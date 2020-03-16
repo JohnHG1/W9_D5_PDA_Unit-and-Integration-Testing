@@ -60,16 +60,6 @@ describe('calculator functionality', function() {
   })
 
 
-  it('should return decimals when a whole number is not the correct responce', function(){
-    displayed_total = element(by.css('#running_total'))
-    element(by.css('#number5')).click();
-    element(by.css('#operator_divide')).click();
-    element(by.css('#number2')).click();
-    element(by.css('#operator_equals')).click();
-    expect(displayed_total.getAttribute('value')).to.eventually.equal('2.5')
-  })
-
-
   it('should handle large numbers correctly', function(){
     displayed_total = element(by.css('#running_total'))
     element(by.css('#number5')).click();
@@ -88,6 +78,16 @@ describe('calculator functionality', function() {
     element(by.css('#operator_equals')).click();
 
     expect(displayed_total.getAttribute('value')).to.eventually.equal('100000000')
+  })
+
+
+  it('should return decimals when a whole number is not the correct responce', function(){
+    displayed_total = element(by.css('#running_total'))
+    element(by.css('#number5')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number2')).click();
+    element(by.css('#operator_equals')).click();
+    expect(displayed_total.getAttribute('value')).to.eventually.equal('2.5')
   })
 
 
