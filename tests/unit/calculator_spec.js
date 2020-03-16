@@ -11,12 +11,14 @@ describe('calculator', function () {
     assert.equal(true, true)
   });
 
+
   it('should add two numbers', function(){
     calculator.previousTotal = 4
     calculator.add(1)
     actual = calculator.runningTotal
     assert.equal(actual, 5);
   })
+
 
   it('should subtract one number from another',  function(){
     calculator.previousTotal = 7
@@ -25,12 +27,14 @@ describe('calculator', function () {
     assert.equal(actual, 3)
   })
 
+
   it('should multiply two numbers', function(){
     calculator.previousTotal = 3
     calculator.multiply(5)
     actual = calculator.runningTotal
     assert.equal(actual, 15)
   })
+
 
   it('should divide two numbers', function(){
     calculator.previousTotal = 21
@@ -40,6 +44,7 @@ describe('calculator', function () {
   })
 
 });
+
 
   describe('Calculator Button clicks', function () {
     beforeEach(function () {
@@ -54,12 +59,14 @@ describe('calculator', function () {
       assert.equal(actual, 123)
     })
 
+
     it('chain multiple operations together', function(){
       calculator.operatorClick('+')
       calculator.operatorClick('-')
       actual = calculator.previousOperator
       assert.equal(actual, '-')
     })
+
 
     it('clear the running total without affecting the calculation', function(){
       calculator.numberClick(1)
