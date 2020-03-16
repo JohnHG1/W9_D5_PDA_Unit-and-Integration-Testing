@@ -9,28 +9,71 @@ describe('calculator', function () {
   // write unit tests here in the form of "it should do something..."
   it('it has a sample test', function(){
     assert.equal(true, true)
+  });
+
+  it('should add two numbers', function(){
+    calculator.previousTotal = 4
+    calculator.add(1)
+    actual = calculator.runningTotal
+    assert.equal(actual, 5);
   })
 
-  // const assert = require('assert')
-// calculator.add()
-  it('correctly calculates the sum of 1 and 4', () => {
-    assert.equal(add(1, 4), 5)
+  it('should subtract one number from another',  function(){
+    calculator.previousTotal = 7
+    calculator.subtract(4)
+    actual = calculator.runningTotal
+    assert.equal(actual, 3)
   })
 
-// calculator.subtract()
-  it('correctly calculates the sum of 4 from 7', () => {
-    assert.equal(subtract(4, 7), 3)
+  it('should multiply two numbers', function(){
+    calculator.previousTotal = 3
+    calculator.multiply(5)
+    actual = calculator.runningTotal
+    assert.equal(actual, 15)
   })
 
-  // calculator.multiplies()
-  it('correctly calculates the sum of 3 by 5', () => {
-    assert.equal(multiply(3, 5), 15)
+  it('should divide two numbers', function(){
+    calculator.previousTotal = 21
+    calculator.divide(7)
+    actual = calculator.runningTotal
+    assert.equal(actual, 3)
   })
 
-  // calculator.divides()
-  it('correctly calculates the sum of 21 by 7', () => {
-    assert.equal(divide(21, 7), 3)
-  })
+});
+
+  describe('Calculator Button clicks', function () {
+    beforeEach(function () {
+      calculator = new Calculator()
+    });
+
+    it('concatenate multiple number button clicks', function(){
+      calculator.numberClick(1)
+      calculator.numberClick(2)
+      calculator.numberClick(3)
+      actual = calculator.runningTotal
+      assert.equal(actual, 123)
+    })
+
+    it('chain multiple operations together', function(){
+      calculator.operatorClick('+')
+      calculator.operatorClick('-')
+      actual = calculator.previousOperator
+      assert.equal(actual, '-')
+    })
+
+    it('clear the running total without affecting the calculation', function(){
+      calculator.numberClick(1)
+      calculator.operatorClick('+')
+      calculator.numberClick(1)
+      calculator.operatorClick('=')
+      calculator.clearClick()
+
+      clearRunning = calculator.runningTotal
+      calculation = calculator.newTotal
+
+      assert.equal(clearRunning, 0)
+      assert.equal(calculation, true)
+    })
 
 
 });
